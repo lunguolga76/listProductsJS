@@ -25,7 +25,9 @@ let newProduct = {
 }
 const modifyHTML = () => {
 div.innerHTML="";
-products.forEach(function(product,i) { 
+
+products.forEach(function(product,i) {
+   
 div.innerHTML +=  `
 <div class="bg-image card shadow-1-strong rounded-2">
 <div class="card-body text-white">
@@ -34,13 +36,20 @@ div.innerHTML +=  `
 <h5>Product price:${product.productPrice}$</h5> 
 </div>
 <div class="d-flex  d-flex justify-content-center align-items-center">
-  <button type="button" id="checkboxID"class="btn btn-primary m-1">${product.productAvailability}</button>
+  <button type="button" id="productAvailable"class="btn btn-primary m-1">${product.productAvailability}</button>
   <button type="button" id="notInStock"class="btn btn-danger m-2"><a onclick="deleteProduct()"><i class="fa fa-trash"></i></a></button>
-  <button id="addToCart" type="button"class="btn btn-success"><a onclick="addToCart()"><small>Add to cart</small></a></button>
+  <button id="addToCart" type="button" disabled class="btn btn-success"><a onclick="addToCart()"><small>Add to cart</small></a></button>
 </div>
 </div>
 <br />
 `
+if(product.productAvailability=="in stock"){
+   document.getElementById('addToCart').disabled=true;
+}else{
+   document.getElementById('addToCart').disabled=false;
+
+}
+
 });
 };
 const deleteProduct=(j) =>  {
@@ -49,11 +58,13 @@ modifyHTML();
 };
 
 const addToCart=()=>{ 
+  
         printCartList.innerHTML="";
+        let grandTotal=0;
          cartProducts.push(Object.entries(products).forEach(([i,v])=>{ 
-         clickCountProduct=clickCountProduct+1;
           printCartList.innerHTML+=`<h6>Product name:${v.productName}<h2>
                                     <h6>Product price:${v.productPrice}$*${clickCountProduct}<h2>`
+                                 
          
 }
    ))
