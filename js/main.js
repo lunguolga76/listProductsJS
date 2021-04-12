@@ -15,7 +15,7 @@ let newProduct = {
    productDescription: document.getElementById('productDescription').value,
    productPrice:Number(document.getElementById("productPrice").value),
    productAvailability:document.getElementById("productAvailability").checked==true,
-   productAvailability: productAvailability.checked==true  ? '<small> in stock</small>' : '<small> out of stock <small>',
+   productAvailability: productAvailability.checked==true  ? '<small>In stock</small>' : '<small>Out of stock<small>',
   
 }
    products.push(newProduct);
@@ -35,7 +35,7 @@ div.innerHTML +=  `
 </div>
 <div class="d-flex  d-flex justify-content-center align-items-center">
   <button type="button" id="checkboxID"class="btn btn-primary m-1">${product.productAvailability}</button>
-  <button type="button"class="btn btn-danger m-2"><a onclick="deleteProduct()"><i class="fa fa-trash"></i></a></button>
+  <button type="button" id="notInStock"class="btn btn-danger m-2"><a onclick="deleteProduct()"><i class="fa fa-trash"></i></a></button>
   <button id="addToCart" type="button"class="btn btn-success"><a onclick="addToCart()"><small>Add to cart</small></a></button>
 </div>
 </div>
@@ -49,14 +49,15 @@ modifyHTML();
 };
 
 const addToCart=()=>{ 
-   clickCountProduct=clickCountProduct+1;
-cartProducts.push(Object.entries(products).forEach(([i,v])=>{
-printCartList.innerHTML+=`<h6>Product name:${v.productName}<h2>`
-
-printCartList.innerHTML+=`<h6>Product price:${v.productPrice}$*${clickCountProduct}<h2>`
- //totalSum+=parseInt(v.productPrice[i]);
-
-}))
+        printCartList.innerHTML="";
+         cartProducts.push(Object.entries(products).forEach(([i,v])=>{ 
+         clickCountProduct=clickCountProduct+1;
+          printCartList.innerHTML+=`<h6>Product name:${v.productName}<h2>
+                                    <h6>Product price:${v.productPrice}$*${clickCountProduct}<h2>`
+         
+}
+   ))
+   
 }
 
 /*function totalSum(){
