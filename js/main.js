@@ -83,11 +83,10 @@ const addToCart=()=>{
         console.log(clickCountProduct);
        document.getElementById("addToCart").addEventListener("onclick",addToCart);
          cartProducts.push(Object.entries(products).forEach(([i,v])=>{ 
-          printCartList.innerHTML+=`<h6>Product name:${v.productName}<h2>
-                                    <h6>Product price:${v.productPrice}$*${clickCountProduct}<h2>`
+          printCartList.innerHTML+=`<h6>${v.productName}&nbsp${v.productPrice}$*${clickCountProduct}<h6>`
                                      
                                        grandTotal+=v.productPrice*clickCountProduct;
-         printTotalPrice.innerHTML=`<h4>TOTAL PRICE:${grandTotal}$</h4>`
+         printTotalPrice.innerHTML=`<h4 class="text-capitalize">total price:${grandTotal}$</h4>`
 }
    ))
    
